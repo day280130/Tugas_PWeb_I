@@ -46,7 +46,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Tugas </a>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-md-end bg-primary" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="index.html">Curriculum Vitae</a></li>
-                <li><a class="dropdown-item" href="#" aria-current="true" style="background-color: #da48ff85">Registration Page Prototype</a></li>
+                <li><a class="dropdown-item" href="#" aria-current="true" style="background-color: #da48ff85">Registration Page</a></li>
               </ul>
             </li>
           </ul>
@@ -73,24 +73,31 @@
           <div class="col-md-4">
             <div class="card bg-white text-primary shadow-lg">
               <div class="card-body">
-                <form action="index.html" method="post">
+                <form action="index.html" id="registration" method="post">
                   <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
-                    <input type="text" class="form-control" id="nama" />
+                    <input type="text" class="form-control" id="nama" onkeydown="enterNext('nama','email');" />
                   </div>
                   <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" />
+                    <input type="email" class="form-control" id="email" onkeydown="enterNext('email','pass');" />
                   </div>
                   <div class="mb-3">
                     <label for="pass" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="pass" />
+                    <input type="password" class="form-control" id="pass" onkeydown="enterNext('pass','repass');" />
                   </div>
                   <div class="mb-3">
                     <label for="repass" class="form-label">Re-Type Password</label>
-                    <input type="password" class="form-control" id="repass" />
+                    <input type="password" class="form-control" id="repass" onkeydown="enterNext('repass','submitReg');" />
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <input
+                    type="button"
+                    id="submitReg"
+                    class="btn btn-primary"
+                    value="Submit"
+                    onclick="document.getElementById('registration').submit();"
+                    onkeydown="enterNext('submitReg', null);"
+                  />
                 </form>
               </div>
             </div>
@@ -106,6 +113,27 @@
       </p>
     </footer>
 
+    <!-- My Javascript -->
+    <script>
+      window.addEventListener("keydown", (event) => {
+        if (event.code == "Enter") {
+          event.preventDefault();
+        }
+      });
+      var currentId;
+      var nextId;
+      function enterNext(currentId, nextId) {
+        document.getElementById(currentId).addEventListener("keyup", function (event) {
+          if (event.code == "Enter") {
+            if (currentId == "submitReg") {
+              document.getElementById("registration").submit();
+            } else {
+              document.getElementById(nextId).focus();
+            }
+          }
+        });
+      }
+    </script>
     <!-- Javascript with Popper -->
     <script src="js/bootstrap.js"></script>
     <script src="js/popper.min.js"></script>
