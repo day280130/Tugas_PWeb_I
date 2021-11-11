@@ -28,7 +28,7 @@
     <!-- Navbar -->
     <nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
       <div class="container p-md-3">
-        <a class="navbar-brand fw-bolder" href="#">Registration Prototype</a>
+        <a class="navbar-brand fw-bolder" href="#">Registration</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -55,25 +55,54 @@
     </nav>
     <!-- Navbar End -->
 
-    <!-- Contact -->
-    <section id="main" class="text-primary">
-      <div class="container" style="height: 500px">
-        <div class="row text-center pb-5">
+    <!-- Main -->
+    <section id="main" class="bg-primary text-white">
+      <div class="container" style="height: 200px">
+        <!-- <div class="row text-center pb-5">
           <div class="col">
             <h2>BELUM SELESAI</h2>
           </div>
-        </div>
-        <!--KOSONG-->
+        </div> -->
+        <!-- KOSONG -->
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#ae00da" fill-opacity="1" d="M0,96L480,192L960,160L1440,224L1440,320L960,320L480,320L0,320Z"></path>
+        <path fill="#ffffff" fill-opacity="1" d="M0,96L480,192L960,160L1440,224L1440,320L960,320L480,320L0,320Z"></path>
       </svg>
+      <div class="container position-absolute top-50 start-50 translate-middle">
+        <div class="row justify-content-center">
+          <div class="col-md-4">
+            <div class="card bg-white text-primary shadow-lg">
+              <div class="card-body">
+                <form action="index.html" method="post">
+                  <div class="mb-3">
+                    <label for="nama" class="form-label">Nama</label>
+                    <input type="text" class="form-control" id="nama" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="pass" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="pass" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="repass" class="form-label">Re-Type Password</label>
+                    <input type="password" class="form-control" id="repass" />
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    <!-- Contact End -->
+    <!-- Main -->
 
-    <footer class="bg-primary text-center text-white fw-light fs-6 p-3">
+    <footer class="text-center text-primary fw-light fs-6 p-3">
       <p class="text-md-end">
-        Powered by <a href="https://www.getbootstrap.com" class="text-decoration-none text-white"><i class="bi bi-bootstrap-fill"></i> v5</a>
+        Powered by <a href="https://www.getbootstrap.com" class="text-decoration-none text-primary"><i class="bi bi-bootstrap-fill"></i> v5</a>
       </p>
     </footer>
 
