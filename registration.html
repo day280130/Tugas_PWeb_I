@@ -76,28 +76,25 @@
                 <form action="index.html" id="registration" method="post">
                   <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
-                    <input type="text" class="form-control" id="nama" onkeydown="enterNext('nama','email');" />
+                    <input type="text" class="form-control" id="nama" onkeydown="enterKey('nama','email');" />
+                    <p id="warn-nama"></p>
                   </div>
                   <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" onkeydown="enterNext('email','pass');" />
+                    <input type="email" class="form-control" id="email" onkeydown="enterKey('email','pass');" />
+                    <p id="warn-email"></p>
                   </div>
                   <div class="mb-3">
                     <label for="pass" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="pass" onkeydown="enterNext('pass','repass');" />
+                    <input type="password" class="form-control" id="pass" onkeydown="enterKey('pass','repass');" />
+                    <p id="warn-pass"></p>
                   </div>
                   <div class="mb-3">
                     <label for="repass" class="form-label">Re-Type Password</label>
-                    <input type="password" class="form-control" id="repass" onkeydown="enterNext('repass','submitReg');" />
+                    <input type="password" class="form-control" id="repass" onkeydown="enterKey('repass','submitReg');" />
+                    <p id="warn-repass"></p>
                   </div>
-                  <input
-                    type="button"
-                    id="submitReg"
-                    class="btn btn-primary"
-                    value="Submit"
-                    onclick="document.getElementById('registration').submit();"
-                    onkeydown="enterNext('submitReg', null);"
-                  />
+                  <input type="button" id="submitReg" class="btn btn-primary" value="Submit" onmousedown="submitForm();" onkeydown="submitForm();" />
                 </form>
               </div>
             </div>
@@ -120,18 +117,44 @@
           event.preventDefault();
         }
       });
-      var currentId;
-      var nextId;
-      function enterNext(currentId, nextId) {
-        document.getElementById(currentId).addEventListener("keyup", function (event) {
-          if (event.code == "Enter") {
-            if (currentId == "submitReg") {
+      function enterKey(currentId, nextId) {
+        if (document.getElementById(currentId).value == "") {
+          document.getElementById("warn-" + currentId).innerHTML = "Harus diisi!";
+          return false;
+        } else {
+          document.getElementById("warn-" + currentId).innerHTML = "";
+          document.getElementById(currentId).addEventListener("keyup", nextField(currentId, nextId));
+          return true;
+        }
+      }
+      function nextField(id1, id2) {
+        if (event.code == "Enter") {
+          document.getElementById(id2).focus();
+        }
+      }
+      function submitForm() {
+        if (
+          document.getElementById("nama").value == "" ||
+          document.getElementById("email").value == "" ||
+          document.getElementById("pass").value == "" ||
+          document.getElementById("repass").value == ""
+        ) {
+          alert("Semua masukan harus diisi!");
+          return false;
+        } else if (document.getElementById("repass").value != document.getElementById("pass").value) {
+          document.getElementById("warn-repass").innerHTML = "Masukan tidak sesuai!";
+          return false;
+        } else {
+          document.getElementById("submitReg").addEventListener("keyup", (event) => {
+            if (event.code == "Enter") {
               document.getElementById("registration").submit();
-            } else {
-              document.getElementById(nextId).focus();
             }
-          }
-        });
+          });
+          document.getElementById("submitReg").addEventListener("mouseup", (event) => {
+            document.getElementById("registration").submit();
+          });
+          return true;
+        }
       }
     </script>
     <!-- Javascript with Popper -->
